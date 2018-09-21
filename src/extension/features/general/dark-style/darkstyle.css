@@ -1,0 +1,374 @@
+﻿/*
+  Last updated: 2018-09-11
+
+  Author: Wolfsblvt
+  Based on: https://userstyles.org/styles/125509/ynab-dark-blue (arthoz)
+
+  Need atleast these versions of a browser to support variables: Chrome 49, Firefox 42, Safari 9.1
+  No support for Internet Explorer 11, Edge 14, Opera 37
+  Updated lists at: http://caniuse.com/#feat=css-variables
+
+*/
+:root {
+  /* General color definitions */
+  --tk-color-text-highlight: rgb(240, 240, 240);
+  --tk-color-text-main: rgb(212, 212, 220);
+  --tk-color-text-main-darker: rgb(176, 176, 183);
+  --tk-color-text-main-blue-dark: rgb(39, 135, 155);
+  --tk-color-text-transparent: rgba(221, 221, 226, .25);
+  --tk-color-text-master-row: rgb(48, 167, 191);
+  --tk-color-text-row: rgb(176, 176, 183);
+  --tk-color-text-button: rgb(187, 187, 194);
+  /* Backgrounds */
+  --tk-color-background-dark: rgb(0, 25, 35);
+  --tk-color-background-dark-two: rgb(5, 35, 45);
+  --tk-color-background-dark-three: rgb(0, 50, 64);
+  --tk-color-background-light: rgb(0, 89, 111);
+  --tk-color-background-light-two: rgb(39, 135, 155);
+  --tk-color-background-highlight: var(--tk-color-text-main);
+  --tk-color-background-row-dark: rgb(4, 27, 35);
+  --tk-color-background-row-dark-alternating: rgb(4, 23, 31);
+  --tk-color-background-input: rgb(4, 25, 33);
+  --tk-color-background-modal: rgb(32, 112, 129);
+  /* Primary budgeting colors */
+  --tk-color-primary-positive: rgb(10, 100, 40);
+  --tk-color-primary-cautious: rgb(150, 90, 5);
+  --tk-color-primary-negative: rgb(150, 40, 5);
+  --tk-color-primary-zero: rgb(89, 89, 89);
+  --tk-color-primary-positive-light: rgb(12, 118, 47);
+  --tk-color-primary-positive-light-highlight: rgb(16, 153, 61);
+  --tk-color-primary-cautious-light: rgb(179, 107, 6);
+  --tk-color-primary-cautious-light-highlight: rgb(205, 122, 7);
+  --tk-color-primary-negative-light: rgb(211, 60, 45);
+  --tk-color-primary-negative-light-highlight: rgb(242, 69, 52);
+  --tk-color-primary-zero-light: rgb(126, 126, 126);
+  --tk-color-primary-zero-light-highlight: rgb(153, 153, 153);
+  /* Button colors */
+  --tk-color-button-primary: rgb(5, 35, 45);
+  --tk-color-button-hover: rgb(22, 78, 89);
+  /* Borders */
+  --tk-color-border-highlight: rgb(39, 133, 153);
+  --tk-color-border-light: rgb(0, 89, 111);
+  --tk-color-border-default: rgb(14, 65, 76);
+  --tk-color-border-dark: rgb(0, 25, 35);
+  /* Sidebar specific stuff */
+  --tk-color-shadow-sidebar: inset -4px -4px 20px -4px rgb(34, 34, 34);
+  /* Special text colors */
+}
+/* Override pacing colors from toolkit pacing feature */
+body {
+  /* ReSharper disable Redundant */
+  --tk-color-progress-bar-pacing: rgb(22, 78, 89);
+  --tk-color-progress-bar-pacing-month-progress-indicator: rgba(176, 176, 183, 0.5);
+  /* ReSharper restore Redundant */
+}
+/* Override underfunded colors from toolkiit*/
+body {
+  /* ReSharper disable Redundant */
+  --tk-color-goal-warning-underfunded: rgb(0, 112, 139);
+  --tk-color-goal-warning-underfunded-hover: rgb(33, 150, 179);
+  --tk-color-goal-warning-underfunded-message: rgba(0, 51, 63, 0.75);
+  --tk-color-goal-warning-underfunded-progress-inner-circle: var(--tk-color-goal-warning-underfunded);
+  --tk-color-goal-warning-underfunded-progress-outer-circle: var(--tk-color-goal-warning-underfunded-hover);
+  /* ReSharper restore Redundant */
+}
+
+/*
+  #################################################
+  ############### General Overrides ###############
+  #################################################
+*/
+
+/* General input fields */
+textarea,
+input,
+input:focus {
+  color: var(--tk-color-text-main);
+  background: var(--tk-color-background-input);
+  border: 2px solid var(--tk-color-border-default);
+}
+
+/* Checkboxes */
+.ynab-checkbox-button-square {
+  background: transparent;
+  border: 1px solid var(--tk-color-border-light);
+}
+
+/*
+  #################################################
+  #################### Sidebar ####################
+  #################################################
+*/
+/* Sidebar background */
+.sidebar {
+  background: var(--tk-color-background-dark-three);
+}
+/* Sidebar second background, accents */
+.sidebar .referral-program,
+.sidebar .button-prefs-user {
+  background: var(--tk-color-background-light);
+}
+
+/* Sidebar hover effect */
+.sidebar .nav-main li a:hover:not(.active),
+.sidebar .referral-program:hover:not(.is-selected),
+.sidebar .button-prefs-user:hover:not(.is-selected) {
+  background: var(--tk-color-background-light-two);
+}
+
+/* Sidebar font colors */
+.sidebar,
+.sidebar .button-prefs-budget,
+.sidebar span,
+.sidebar .nav-account-name-button,
+.sidebar .nav-main li a,
+.sidebar .nav-add-account {
+  color: var(--tk-color-text-main);
+}
+
+/* Highlighting for selected sidebar elements */
+.sidebar .nav-main li.active a,
+.sidebar .nav-account-row.is-selected,
+.sidebar .nav-account-row.is-selected span {
+  color: var(--tk-color-text-highlight);
+  background: var(--tk-color-background-light);
+}
+
+/* Negative account values in sidebar */
+.sidebar .nav-account-value span.negative {
+  color: var(--tk-color-primary-negative-light);
+  background: var(--tk-color-background-highlight);
+}
+
+/*
+  #################################################
+  ##################### Modal #####################
+  #################################################
+*/
+
+.modal,
+.modal-generic .modal {
+  background: var(--tk-color-background-modal);
+}
+
+.modal .modal-arrow {
+  border-bottom-color: var(--tk-color-background-modal) !important; /* Override, because its inline style color */
+}
+
+/* Modal menu items */
+.modal ul.modal-list li,
+.modal ul.modal-list button,
+.modal ul.modal-list a,
+.modal ul.modal-list a.modal-select-budget-open {
+  color: var(--tk-color-text-highlight);
+}
+
+/* Modal menu item hover */
+.modal ul.modal-list button:hover,
+.modal-popup ul.modal-list button:hover,
+.modal-popup ul.modal-list .modal-select-budget-open:hover {
+  color: var(--tk-color-text-main-darker);
+}
+
+/* Modal input boxes */
+.modal-popup input:focus {
+  color: var(--tk-color-text-main);
+  background: var(--tk-color-background-input);
+}
+
+/* Modal Buttons */
+.modal .button {
+  color: var(--tk-color-text-highlight);
+  border: 2px solid var(--tk-color-border-highlight);
+}
+.modal .button-primary {
+  background: var(--tk-color-button-primary);
+  border: 2px solid transparent;
+}
+.modal .button:hover {
+  background: var(--tk-color-button-hover);
+}
+
+/* Special Modal adjustments */
+.cc-animate-amount .modal h2,
+.modal p {
+  color: var(--tk-color-text-highlight);
+}
+
+/*
+  #################################################
+  ##################### Header ####################
+  #################################################
+*/
+/* Header font colors */
+.budget-header,
+.left-to-budget,
+.budget-header-days {
+  color: var(--tk-color-text-main);
+}
+
+/* Header background */
+.budget-header .budget-header-item {
+  background: var(--tk-color-background-dark-two);
+  border-left: 1px solid var(--tk-color-border-default);
+}
+
+/* Neat borders */
+.budget-header-flexbox {
+  border-bottom: 1px solid var(--tk-color-border-default);
+}
+
+/* To Be Budgeted flag colors */
+.budget-header-totals-amount {
+  background: var(--tk-color-primary-positive);
+}
+.budget-header-totals-amount-arrow .arrow {
+  border-left-color: var(--tk-color-primary-positive);
+}
+body .budget-header-totals-amount.toolkit-cautious {
+  background: var(--tk-color-primary-cautious);
+}
+body .budget-header-totals-amount-arrow.toolkit-cautious .arrow {
+  border-left-color: var(--tk-color-primary-cautious);
+}
+.left-to-budget-is-negative .budget-header-totals-amount {
+  background: var(--tk-color-primary-negative);
+}
+.left-to-budget-is-negative .budget-header-totals-amount-arrow .arrow {
+  border-left-color: var(--tk-color-primary-negative);
+}
+
+/*
+  #################################################
+  ################# Budget Screen #################
+  #################################################
+*/
+
+/* Budget Toolbar */
+.budget-toolbar {
+  background: var(--tk-color-background-dark-two);
+  border-bottom: 1px solid var(--tk-color-border-default);
+}
+.budget-toolbar .button {
+  color: var(--tk-color-text-main);
+}
+.budget-toolbar .button.button-disabled {
+  color: var(--tk-color-text-main-blue-dark);
+}
+.budget-toolbar .button:hover {
+  color: var(--tk-color-text-main-darker);
+}
+
+/* Budget Table Header */
+.budget-table-container .budget-table-header {
+  background: var(--tk-color-background-dark-two);
+  border-bottom: 1px solid var(--tk-color-border-light);
+}
+
+/* Budget Table Master Categories */
+.budget-table .budget-table-row.is-master-category {
+  background: var(--tk-color-background-dark-three);
+  border-top: 1px solid var(--tk-color-border-default);
+}
+.budget-table .budget-table-row.is-master-category span {
+  color: var(--tk-color-text-master-row);
+}
+
+/* Budget Table Sub Categories */
+.budget-table .budget-table-row.is-sub-category {
+  background: var(--tk-color-background-row-dark);
+  border-top: 1px solid var(--tk-color-border-dark);
+}
+.budget-table .budget-table-row.is-sub-category:nth-of-type(2n) {
+  background: var(--tk-color-background-row-dark-alternating);
+  border-top: 1px solid var(--tk-color-border-dark);
+}
+.budget-table .budget-table-row.is-sub-category span,
+.budget-table .budget-table-row.is-sub-category > .budget-table-cell-budgeted .currency {
+  color: var(--tk-color-text-row);
+}
+
+/* Goal amounts */
+.budget-table .toolkit-target-goal-amount {
+  color: var(--tk-color-text-row);
+}
+.budget-table .toolkit-display-goal-highlight {
+  color: var(--tk-color-primary-positive-light);
+}
+.budget-table .budget-table-row.is-checked .toolkit-display-goal-highlight {
+  color: var(--tk-color-primary-positive-light-highlight);
+}
+
+/* Budgeted amount input */
+.ynab-new-currency-input.is-editing,
+.ynab-new-currency-input:hover {
+  background: var(--tk-color-background-input);
+}
+
+/* Budget available, general settings */
+.budget-table .budget-table-row.is-sub-category .ynab-new-budget-available-number span,
+.toolkit-cell-pacing-display {
+  color: var(--tk-color-text-button);
+}
+
+/* Test define primary colors */
+.positive {
+  --tk-color-defined-primary-color: var(--tk-color-primary-positive);
+  --tk-color-defined-primary-color-light: var(--tk-color-primary-positive-light);
+  --tk-color-defined-primary-color-light-highlight: var(--tk-color-primary-positive-light-highlight);
+}
+.zero {
+  --tk-color-defined-primary-color: var(--tk-color-primary-zero);
+  --tk-color-defined-primary-color-light: var(--tk-color-primary-zero-light);
+  --tk-color-defined-primary-color-light-highlight: var(--tk-color-primary-zero-light-highlight);
+}
+.negative {
+  --tk-color-defined-primary-color: var(--tk-color-primary-negative);
+  --tk-color-defined-primary-color-light: var(--tk-color-primary-negative-light);
+  --tk-color-defined-primary-color-light-highlight: var(--tk-color-primary-negative-light-highlight);
+}
+.cautious {
+  --tk-color-defined-primary-color: var(--tk-color-primary-cautious);
+  --tk-color-defined-primary-color-light: var(--tk-color-primary-cautious-light);
+  --tk-color-defined-primary-color-light-highlight: var(--tk-color-primary-cautious-light-highlight);
+}
+
+/* Budget available, primary colors */
+.ynab-new-budget-available-number.positive       { background: var(--tk-color-defined-primary-color); }
+.ynab-new-budget-available-number.positive:hover { background: var(--tk-color-defined-primary-color-light); }
+.ynab-new-budget-available-number.zero           { background: var(--tk-color-defined-primary-color); }
+.ynab-new-budget-available-number.zero:hover     { background: var(--tk-color-defined-primary-color-light); }
+.ynab-new-budget-available-number.negative       { background: var(--tk-color-defined-primary-color); }
+.ynab-new-budget-available-number.negative:hover { background: var(--tk-color-defined-primary-color-light); }
+.ynab-new-budget-available-number.cautious       { background: var(--tk-color-defined-primary-color); }
+.ynab-new-budget-available-number.cautious:hover { background: var(--tk-color-defined-primary-color-light); }
+
+/* Pacing colors, general settings */
+span.toolkit-cell-pacing-display {
+  color: var(--tk-color-text-button) !important;
+}
+
+/* Pacing colors, primary colors */
+.toolkit-cell-pacing-display.positive       { background: var(--tk-color-defined-primary-color) !important; }
+.toolkit-cell-pacing-display.positive:hover { background: var(--tk-color-defined-primary-color-light) !important; }
+.toolkit-cell-pacing-display.cautious       { background: var(--tk-color-defined-primary-color) !important; }
+.toolkit-cell-pacing-display.cautious:hover { background: var(--tk-color-defined-primary-color-light) !important; }
+
+/* Additional overrides needed, credit card category available if cautious */
+.budget-table-row.is-sub-category.is-debt-payment-category[data-toolkit-pif-assist] .ynab-new-budget-available-number {
+  background: var(--tk-color-primary-cautious) !important;
+}
+
+/*
+  #################################################
+  ############### Budget Inspector ################
+  #################################################
+*/
+.budget-inspector {
+  background: var(--tk-color-background-dark);
+  color: var(--tk-color-text-main);
+}
+
+/* Fix available amount defined primary color */
+.inspector-overview-available dt { color: var(--tk-color-defined-primary-color) !important; }
+.inspector-overview-available .ynab-new-budget-available-number:hover { background: var(--tk-color-defined-primary-color); }
